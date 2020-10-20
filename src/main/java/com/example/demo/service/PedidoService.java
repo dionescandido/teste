@@ -1,4 +1,2 @@
-package com.example.demo.service;
-
-public class PedidoService {
+package com.example.demo.service;public class PedidoService {
 }
