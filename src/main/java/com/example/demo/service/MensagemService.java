@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 
-import com.example.demo.domain.Pedido;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -23,19 +22,18 @@ public class MensagemService {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-
         String queue = "hello";
         boolean durable = false;
         boolean exclusive = false;
         boolean autoDelete = false;
 
         channel.queueDeclare(queue, durable, exclusive, autoDelete, null);
-        String message = "Hello CloudAMQP!";
+        String message = "1";
 
         String exchangeName = "";
         String routingKey = "hello";
         channel.basicPublish(exchangeName, routingKey, null, message.getBytes());
-        System.out.println(" [x] Sent '" + message + "'");
+        System.out.println(" [x] Enviado o pedido'" + message + "'");
 
         QueueingConsumer consumer = new QueueingConsumer(channel);
         channel.basicConsume(queue, true, consumer);
@@ -43,7 +41,7 @@ public class MensagemService {
         while (true) {
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();
             message = new String(delivery.getBody());
-            System.out.println(" [x] Received '" + message + "'");
+            System.out.println(" [x] Recebido o pedido '" + message + "'");
         }
     }
 

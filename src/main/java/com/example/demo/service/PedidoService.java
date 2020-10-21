@@ -2,11 +2,12 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Pedido;
 import com.example.demo.repository.PedidoRepository;
+import jdk.jfr.events.ExceptionThrownEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PedidoService {
+public class PedidoService  {
 
     @Autowired
     private PedidoRepository pedidoRepository;
@@ -15,6 +16,9 @@ public class PedidoService {
     public Pedido salvar(Pedido pedido){
 
         return pedidoRepository.save(pedido);
+
+
+
 
 
     }
